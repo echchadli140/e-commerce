@@ -1,18 +1,15 @@
 <?php
-
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-final class PageController extends AbstractController
+final class ProductController extends AbstractController
 {
-    #[Route('/page', name: 'app_page')]
+    #[Route('/product-details', name: 'app_product_details')]
     public function index(): Response
     {
-        return $this->render('page/index.html.twig', [
-            'controller_name' => 'PageController',
-        ]);
+        return $this->render('product_details.html.twig');
     }
 }
