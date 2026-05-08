@@ -56,16 +56,16 @@
     </div>
 
     <!-- Add to Cart Form -->
-    <form>
-        <div class="mb-3">
-            <label for="quantity" class="form-label">Quantity</label>
-            <input type="number" class="form-control" id="quantity" name="quantity" value="1" min="1" max="10" style="max-width: 100px;">
-        </div>
-        <div class="d-grid gap-2 d-md-flex">
-            <button type="submit" class="btn btn-primary btn-lg">Add to Cart</button>
-            <a href="{{ path('app_browse_categories') }}" class="btn btn-outline-secondary btn-lg">Continue Shopping</a>
-        </div>
-    </form>
+    {{ form_start(form) }}
+    <div class="mb-3">
+        {{ form_label(form.quantity) }}
+        {{ form_widget(form.quantity) }}
+    </div>
+    <div class="d-grid gap-2 d-md-flex">
+        {{ form_widget(form.submit) }}
+        <a href="{{ path('app_browse_categories') }}" class="btn btn-outline-secondary btn-lg">Continue Shopping</a>
+    </div>
+    {{ form_end(form) }}
 
     <!-- Additional Info -->
     <div class="mt-4 pt-4 border-top">
