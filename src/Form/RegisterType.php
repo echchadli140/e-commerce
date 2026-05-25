@@ -2,9 +2,11 @@
 
 namespace App\Form;
 
+use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -21,8 +23,16 @@ class RegisterType extends AbstractType
             ->add('email', EmailType::class, [
                 'attr' => ['class' => 'form-control'],
             ])
-            ->add('password', PasswordType::class, [
-                'attr' => ['class' => 'form-control'],
+            ->add('password', RepeatedType::class, [
+                'type' => PasswordType::class,
+                'first_options' => [
+                    'label' => 'Password',
+                    'attr' => ['class' => 'form-control'],
+                ],
+                'second_options' => [
+                    'label' => 'Confirm Password',
+                    'attr' => ['class' => 'form-control'],
+                ],
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Register',
@@ -33,6 +43,8 @@ class RegisterType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults([]);
+        $resolver->setDefaults([
+            'data_class' => User::class,
+        ]);
     }
 }
